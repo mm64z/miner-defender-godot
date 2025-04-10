@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://bfveu83202uor"]
+
+[ext_resource type="Texture2D" uid="uid://du4ght8hom311" path="res://assets/images/Miner.png" id="1_5x4dd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x4dd"]
+size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcpy4"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8so5f"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxqb1"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrgr1"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ve7c"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg8xb"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fs0y"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syxsf"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fucr"]
+atlas = ExtResource("1_5x4dd")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2e1xd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcpy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8so5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxqb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrgr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ve7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg8xb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fs0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syxsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fucr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Miner" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5x4dd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2e1xd")
+autoplay = "default"
+frame_progress = 0.140724

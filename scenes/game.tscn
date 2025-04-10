@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://cet1s00lxjqwd"]
+
+[ext_resource type="Script" uid="uid://rm0uc2fyxdk2" path="res://scripts/game_manager.gd" id="1_p57ef"]
+[ext_resource type="PackedScene" uid="uid://badcfyuv1danm" path="res://scenes/player.tscn" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://b8u0yg0ktpms2" path="res://scripts/player.gd" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bfveu83202uor" path="res://scenes/miner.tscn" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://ddmmuqt7kojf1" path="res://scenes/enemy.tscn" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://qp1iv333bh3l" path="res://assets/Planet Textures 1024x512/Barren/Barren_02-1024x512.png" id="3_lnu2h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_p57ef")
+
+[node name="Timer" type="Timer" parent="GameManager"]
+wait_time = 3.0
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("1_yqjtg")]
+unique_name_in_owner = true
+collision_mask = 13
+motion_mode = 1
+script = ExtResource("2_lnu2h")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Buildings" type="Node" parent="."]
+
+[node name="Miner" parent="Buildings" instance=ExtResource("3_iywne")]
+position = Vector2(-114, -68)
+collision_mask = 9
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("3_lbhrr")]
+position = Vector2(286, 188)
+rotation = -2.62761
+
+[node name="Background" type="Node" parent="."]
+
+[node name="BackgroundTileMap" type="TileMapLayer" parent="Background"]
+
+[node name="Barren_02-1024x512" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(-9.99998, 2.49999)
+scale = Vector2(3.93555, 3.93555)
+texture = ExtResource("3_lnu2h")
+
+[node name="World Boundaries" type="Node" parent="."]
+
+[node name="Bottom" type="StaticBody2D" parent="World Boundaries"]
+position = Vector2(3, 925)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundaries/Bottom"]
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="Right" type="StaticBody2D" parent="World Boundaries"]
+position = Vector2(1919, -4)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundaries/Right"]
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="Top" type="StaticBody2D" parent="World Boundaries"]
+position = Vector2(-4, -956)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundaries/Top"]
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="Left" type="StaticBody2D" parent="World Boundaries"]
+position = Vector2(-1930, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundaries/Left"]
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
