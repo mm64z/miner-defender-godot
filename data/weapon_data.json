@@ -1,0 +1,18 @@
+{
+	"basic": {
+		"type": "basic",
+		"speed": 500,
+		"damage": 50,
+		"cooldown": 0.3,
+		"spread": 2,
+		"image": "basic",
+	},
+	"fast": {
+		"type": "fast",
+		"speed": 500,
+		"damage": 10,
+		"cooldown": 0.1,
+		"spread": 10,
+		"image": "small",
+	},
+}

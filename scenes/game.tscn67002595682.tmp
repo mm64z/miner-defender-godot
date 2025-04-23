@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cet1s00lxjqwd"]
+[gd_scene load_steps=8 format=3 uid="uid://cet1s00lxjqwd"]
 
 [ext_resource type="Script" uid="uid://rm0uc2fyxdk2" path="res://scripts/game_manager.gd" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://badcfyuv1danm" path="res://scenes/player.tscn" id="1_yqjtg"]
@@ -6,25 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bfveu83202uor" path="res://scenes/miner.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://ddmmuqt7kojf1" path="res://scenes/enemy.tscn" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://qp1iv333bh3l" path="res://assets/Planet Textures 1024x512/Barren/Barren_02-1024x512.png" id="3_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://t62nawbf7hgf" path="res://scenes/resource.tscn" id="5_u5sy4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="Resources" type="RichTextLabel" parent="CanvasLayer"]
-unique_name_in_owner = true
-offset_left = 5.0
-offset_top = 2.0
-offset_right = 151.0
-offset_bottom = 130.0
-text = "Resources"
-
 [node name="GameManager" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("1_p57ef")
 
 [node name="Timer" type="Timer" parent="GameManager"]
@@ -38,19 +25,15 @@ motion_mode = 1
 script = ExtResource("2_lnu2h")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-unique_name_in_owner = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Resources" type="Node" parent="."]
+[node name="Buildings" type="Node" parent="."]
 
-[node name="Miner" parent="Resources" instance=ExtResource("3_iywne")]
+[node name="Miner" parent="Buildings" instance=ExtResource("3_iywne")]
 position = Vector2(-114, -68)
 collision_mask = 9
-
-[node name="Resource" parent="Resources" instance=ExtResource("5_u5sy4")]
-position = Vector2(108, -210)
 
 [node name="Enemies" type="Node" parent="."]
 

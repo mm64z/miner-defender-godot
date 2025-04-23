@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://badcfyuv1danm"]
+[gd_scene load_steps=6 format=3 uid="uid://badcfyuv1danm"]
 
 [ext_resource type="Texture2D" uid="uid://cmab77bdmigbc" path="res://assets/images/Player.png" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://d1m2icdo1r7pu" path="res://assets/images/Gun.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://cgojt0oc2qe3j" path="res://scripts/build_range.gd" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(11, 53)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 12
@@ -23,3 +26,16 @@ position = Vector2(21, 26)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Build Range" type="Area2D" parent="."]
+scale = Vector2(15, 15)
+collision_mask = 16
+script = ExtResource("3_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Build Range"]
+shape = SubResource("CircleShape2D_g2els")
+
+[connection signal="area_entered" from="Build Range" to="Build Range" method="_on_area_entered"]
+[connection signal="area_exited" from="Build Range" to="Build Range" method="_on_area_exited"]
+[connection signal="body_entered" from="Build Range" to="Build Range" method="_on_body_entered"]
+[connection signal="body_exited" from="Build Range" to="Build Range" method="_on_body_exited"]

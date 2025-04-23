@@ -1,9 +1,25 @@
 extends RigidBody2D
 
-@onready var player: CharacterBody2D = %Player
+var player: CharacterBody2D
 @onready var enemy: RigidBody2D = $"."
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var game_manager: Node = %GameManager
 
-const SPEED = 100
+var SPEED = 1
+var MAX_SPEED = 100
+var HEALTH = 100
+
+# backup for when initialize not called
+func _ready():
+	if player == null:
+		player = get_tree().current_scene.find_child("Player", true, false)
+
+func initialize(p: CharacterBody2D, stats: Dictionary):
+	player = p
+	# TODO enum?
+	SPEED = stats.get("accel", SPEED)
+	MAX_SPEED = stats.get("max_speed", MAX_SPEED)
+	HEALTH = stats.get("health", HEALTH)
 
 func _physics_process(delta: float) -> void:
 	
@@ -14,7 +30,15 @@ func _physics_process(delta: float) -> void:
 	enemy.rotation = vector.angle()
 	
 	# move toawrds player
-	enemy.linear_velocity = Vector2.RIGHT.rotated(rotation) * SPEED
+	enemy.apply_central_force (vector * SPEED)
+	if linear_velocity.length() > MAX_SPEED:
+		linear_velocity = linear_velocity.normalized() * MAX_SPEED
 
 func _on_body_entered(body: Node) -> void:
-	pass # Replace with function body.
+	if body.has_method("get_damage"):
+		take_damage(body.get_damage())
+		
+func take_damage(damage: int) -> void:
+	HEALTH -= damage
+	if HEALTH <= 0:
+		animation_player.play("destroy")

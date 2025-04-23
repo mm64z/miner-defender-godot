@@ -172,7 +172,7 @@ _data = {
 
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 37
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_y25gk")

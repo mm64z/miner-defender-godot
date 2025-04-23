@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfveu83202uor"]
+[gd_scene load_steps=14 format=3 uid="uid://bfveu83202uor"]
 
 [ext_resource type="Texture2D" uid="uid://du4ght8hom311" path="res://assets/images/Miner.png" id="1_5x4dd"]
+[ext_resource type="Script" uid="uid://blcfcf7fvp2" path="res://scripts/miner.gd" id="1_qcpy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5x4dd"]
 size = Vector2(64, 64)
@@ -77,6 +78,9 @@ animations = [{
 }]
 
 [node name="Miner" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 12
+script = ExtResource("1_qcpy4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5x4dd")

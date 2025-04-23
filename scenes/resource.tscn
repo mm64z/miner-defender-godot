@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://t62nawbf7hgf"]
+
+[ext_resource type="Texture2D" uid="uid://b3wtsankjnwy5" path="res://assets/images/Resource-Iron.png" id="1_ca17w"]
+[ext_resource type="Script" uid="uid://yibmf438ibp3" path="res://scripts/resource.gd" id="1_cngf4"]
+[ext_resource type="PackedScene" uid="uid://bfveu83202uor" path="res://scenes/miner.tscn" id="3_wl5q8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cngf4"]
+size = Vector2(64, 64)
+
+[node name="Resource" type="Area2D"]
+collision_layer = 16
+collision_mask = 12
+script = ExtResource("1_cngf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ca17w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cngf4")
+
+[node name="Miner" parent="." instance=ExtResource("3_wl5q8")]
+process_mode = 4
+visible = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
